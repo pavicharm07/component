@@ -1,0 +1,49 @@
+
+<div class="container">
+    <h2>TWEET APPLICATION</h2>
+    <div style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAYFBMVEUBSn8yqtwAQ3kzruAAR3wARXszreAyqt0AQXgTZpkvptgmkMIbd6kASn4uo9Yrnc8bdKYVa54gg7UIU4cdfK8RYJQWbaAmkMM0suQGUYQbdqoNW48hhbYsntEol8kMWIycGcqpAAADW0lEQVR4nO3c63KiShSGYewTJwVFMOPG4P3f5XDINhqhCVbtYXbW+/yMSVX71VrNosUEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+NuZ3tqr+D8wSlWH7fZQK0VefsYeGt1y2oVpfBeXtODmO2unDpne/MvpPFbDC9bu82D3Xy/wL2Kq2M78ik3d5oEubFts0bVMfm1F1VbUhMeZN/yuN1/oxlZl7twmE5VVcNRhcva9ZdM8ZdU1o+uqTVeiwjJlG0XiqS1VjGX1kdg/StQer/r9aDotU7mpqEJdRiY6Ctq1omx455Uaf101k3WVxVFd5pI6MQqHKnHbaOxlU083Ydps2tFrP3ct/UGizwvc2O5jL5NdOPxVMVGRP1KU3Hbr8PB8J6PeZ7IarcefSjWfpaOb69c6UdNd2OVbisrqsc+cu5wfq+vo60J3ktSDLRM/1I7Tl2t0t2X7wtK1oL198LlpfUSg832g7Ed9HT1tqI/rrnwFtnwqHu2asuoCM8YS1gObjAXhkuayPdTB2IuCw/qya903pPMPWWuv/M+zgdr6M5mSrb30P669D1bRa2kJO8vq6M3b6XzybE2TGmFTVj85hE4nL4TlLuLGrPvbnWV0Ka4N+5PS18ISdJB182pYydoLX0GUvpaWlre/BzMHC56wBJ29fxq5OfxWWFeJYQXq7ZVGzGWd+93Yt+W1JbMLO2rmY4kRbu01r0fF2bJWdKnEa+HA2ChOwwVhCd3ee/uqqk/lgrBEDlkDNTzWt6CwarmFZaqlO5bQuaEXLTt7CM9rL3hdS7LSW3EnWQ/s9GNYz3XVSG7Cjo2/OzmE4dprXZ+5Pj9nO96Es083C2BUGX5jfNCl3BHrnrWnNJn5YFVfpG9YN0apYO/bvNwbdXVjbOGrLC34/vkrE/lPH8jqxkSVf5CX9lTkFGPVbuufHVwYC8/KWtWy56ponDeqUDc7uScNveulSdM0z0I3E5Xb7IWXVfclpcLp+cHd6UvA2N71YeGd29uhS4fpkatgZxdYtc+nm9DprAyI6mbXfYE3H2nH9kfvRaVowEft5HA+FE3Wfb1eD35lzeV0vD0QjwdtYDao632vrtv2JCg/Y2yP/wwCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB+jt/qHSBr92/bPQAAAABJRU5ErkJggg==');"></div>
+<form #loginform="ngForm" (ngSubmit)="loginUser()">
+  {{loginform.form.valid}}
+  <small class="text-danger">{{message}}</small>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="user.emailId" required required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel"
+      [class.is.invalid]="email.invalid && email.touched"
+      >
+      <!--<small class="text-danger" [class.d-none]="email.valid || email.untouched">Email Id is required field</small>-->
+      <div *ngIf="email.errors && (email.invalid && email.touched)">
+        <small class="text-danger" *ngIf="email.errors.required">Email Id is required</small>
+        <small class="text-danger" *ngIf="email.errors.pattern">Enter the valid Email Id</small>
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" [(ngModel)]="user.password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel"
+        [class.is.invalid]="password.invalid && password.touched"
+        >
+       <!---- <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required field</small>-->
+       <div *ngIf="password.errors && (password.invalid && password.touched)">
+        <small class="text-danger" *ngIf="password.errors.required">Password is required</small>
+        <small class="text-danger" *ngIf="password.errors.pattern">Enter the strong Password</small>
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label><input type="checkbox"> Remember me</label>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <button class="loginbtn">Login</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+  </form>
+  <small class="float-right" [routerLink]="['/registration']">Signup</small>
+</div>  
+
+  
